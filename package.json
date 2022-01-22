@@ -1,0 +1,19 @@
+{
+  "name": "nestjsstarterkit",
+  "version": "1.0.0",
+  "description": "For initate a project structure",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sajidur/NestJSStarterKIT.git"
+  },
+  "author": "Sajidur Rahman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sajidur/NestJSStarterKIT/issues"
+  },
+  "homepage": "https://github.com/sajidur/NestJSStarterKIT#readme"
+}
