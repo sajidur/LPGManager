@@ -1,22 +1,25 @@
-import { IsEmail, IsNotEmpty } from 'class-validator';
-import { ApiProperty } from '@nestjs/swagger';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
-export class employee {
-  @ApiProperty()
-  id: string;
-  @IsNotEmpty()
-  @ApiProperty()
-  name: string;
+@Entity()
+export class employee extends BaseEntity {
+ @PrimaryGeneratedColumn('uuid')
+ id: string;
 
-  @ApiProperty()
-  @IsNotEmpty()
-  image: string;
+ @Column({ name: 'image', type: 'varchar' })
+ image: string;
 
-  @ApiProperty()
-  @IsNotEmpty()
-  designation = false;
+ @Column({ name: 'name', type: 'varchar', length: 50 })
+ name: string;
 
-  @ApiProperty()
-  @IsNotEmpty()
-  salary: number;
+ @Column({ name: 'designation', type: 'varchar', nullable: true, length: 255 })
+ designation: string;
+
+ @Column({ name: 'salary', type: 'int' })
+ salary: number;
+
+ static findByDesignation(designation: string) {
+    return this.createQueryBuilder("employee")
+      .where("employee.designation = :designation", { designation })
+      .getOne();
+  }
 }

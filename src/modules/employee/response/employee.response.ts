@@ -2,8 +2,7 @@ import { IsEmail, IsNotEmpty } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class employeeResponse {
-  @ApiProperty()
-  id: string;
+
   @IsNotEmpty()
   @ApiProperty()
   name: string;
@@ -14,7 +13,7 @@ export class employeeResponse {
 
   @ApiProperty()
   @IsNotEmpty()
-  designation = false;
+  designation : string;
 
   @ApiProperty()
   @IsNotEmpty()
