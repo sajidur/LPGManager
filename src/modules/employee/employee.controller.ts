@@ -52,7 +52,7 @@ import { employeeResponse } from './response/employee.response';
   
     constructor(private employeeService: EmployeeService) {}
   
-    @Get('employee/getByDesignation:/')
+    @Get('getByDesignation/:designation')
     @ApiOkResponse({ type: () => employeeResponse })
     async getByDesignation(
       @Param('designation') designation: string,
