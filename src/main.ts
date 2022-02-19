@@ -19,8 +19,8 @@ async function bootstrap() {
     }),
   );
   const config = new DocumentBuilder()
-    .setTitle('HRM Form Builder API')
-    .setDescription('The HRM Form Builder API description')
+    .setTitle('LPG Manager API')
+    .setDescription('LPG Manager API description')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);

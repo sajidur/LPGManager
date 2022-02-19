@@ -39,40 +39,47 @@ import { HttpExceptionFilter } from 'src/common/HttpExceptionFilter';
 import { RequestLogInterceptor } from 'src/common/RequestLogInterceptor';
 import { SwaggerResponseType } from 'src/common/SwaggerResponseType';
 import { TransformInterceptor } from 'src/common/TransformInterceptor';
-import { EmployeeService } from './employee.service';
-import { employee } from './entity/employee.entity';
-import { employeeResponse } from './response/employee.response';
+import { CompanyService } from './company.service';
+import { Company } from './entity/company.entity';
+import { CompanyResponse } from './response/company.response';
   
-  @ApiTags('Employee API')
-  @Controller('employee')
+  @ApiTags('company API')
+  @Controller('company')
   @UseInterceptors(TransformInterceptor, RequestLogInterceptor)
   @UseFilters(HttpExceptionFilter)
-  export class EmployeeController {
-    private readonly logger = new Logger(EmployeeController.name);
+  export class CompanyController {
+    private readonly logger = new Logger(CompanyController.name);
   
-    constructor(private employeeService: EmployeeService) {}
+    constructor(private companyService: CompanyService) {}
   
-    @Get('getByDesignation/:designation')
-    @ApiOkResponse({ type: () => employeeResponse })
+    @Get('getById/:id')
+    @ApiOkResponse({ type: () => CompanyResponse })
     async getByDesignation(
-      @Param('designation') designation: string,
+      @Param('id') id: string,
     ) {
-      if (designation == '') return "Bad request designation should't empty";
-      console.log(designation);
-      return this.employeeService.getEmployeeByDesignation(
-        designation
+      if (id == '') return "Bad request designation should't empty";
+      return this.companyService.findOne(
+        id
+      );
+    }
+
+    @Get('getall')
+    @ApiOkResponse({ type: () => CompanyResponse })
+    async getall(
+    ) {
+      return this.companyService.all(   
       );
     }
 
     @Post('employee/create')
-    @ApiOkResponse({ type: () => employeeResponse })
-    @ApiOkResponse({ type: () => SwaggerResponseType(employeeResponse) })
+    @ApiOkResponse({ type: () => CompanyResponse })
+    @ApiOkResponse({ type: () => SwaggerResponseType(CompanyResponse) })
     @UseInterceptors(ClassSerializerInterceptor)
     async create(
-      @Body() employee:employee    ) {
-      if (employee.name == '') return "Bad request designation should't empty";
-      return this.employeeService.create(
-        employee
+      @Body() company:Company    ) {
+      if (company.company_name == '') return "Bad request comapny name should't empty";
+      return this.companyService.create(
+        company
       );
     }
   

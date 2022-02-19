@@ -1,7 +1,7 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
-export class employee extends BaseEntity {
+export class User extends BaseEntity {
  @PrimaryGeneratedColumn('uuid')
  id: string;
 
@@ -18,8 +18,8 @@ export class employee extends BaseEntity {
  salary: number;
 
  static findByDesignation(designation: string) {
-    return this.createQueryBuilder("employee")
-      .where("employee.designation = :designation", { designation })
+    return this.createQueryBuilder("user")
+      .where("LPGManager.user = :userId", { designation })
       .getOne();
   }
 }

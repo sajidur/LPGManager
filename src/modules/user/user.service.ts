@@ -8,28 +8,28 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { employee } from './entity/employee.entity';
-import { employeeResponse } from './response/employee.response';
+import { User } from './entity/user.entity';
+import { UserResponse } from './response/user.response';
 @Injectable()
-export class EmployeeService {
+export class UserService {
 
-  constructor(@InjectRepository(employee) private readonly repository: Repository<employee>) { }
+  constructor(@InjectRepository(User) private readonly repository: Repository<User>) { }
 
-  create(employeeDto: employee): Promise<employee> {
+  create(employeeDto: User): Promise<User> {
     const employe = this.repository.create(employeeDto);
     return this.repository.save(employe);
   }
  
-  getEmployeeByDesignation(designation): Promise<employee[]> {
+  getEmployeeByDesignation(designation): Promise<User[]> {
     var data= this.repository.find({designation:designation});
     return data;
   }
  
-  findOne(id: string): Promise<employee> {
+  findOne(id: string): Promise<User> {
     return this.repository.findOne(id);
   }
  
-  async update(id: string, updateItemDto: employee): Promise<employee> {
+  async update(id: string, updateItemDto: User): Promise<User> {
     const item = await this.repository.preload({
       id: id,
       ...updateItemDto,
