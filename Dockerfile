@@ -34,7 +34,7 @@ RUN npm ci --only=production && npm cache clean --force
 FROM node:${NODE_VERSION}
 ARG VERSION
 
-LABEL maintainer="bmqa"
+LABEL maintainer="sajidur07"
 LABEL app.name="lpgmanager" app.version=${VERSION}
 
 RUN apk add --update --no-cache tini && \
