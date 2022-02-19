@@ -19,10 +19,4 @@ export class Company extends BaseEntity {
 
  @Column({ name: 'company_type', type: 'int' })
  company_type: number;
-
- static findById(id: string) {
-    return this.createQueryBuilder("company")
-      .where("LPGManager.id = :id", { id })
-      .getOne();
-  }
 }

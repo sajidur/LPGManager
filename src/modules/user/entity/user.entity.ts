@@ -2,8 +2,8 @@ import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, UpdateDateColumn } 
 
 @Entity()
 export class User extends BaseEntity {
- @PrimaryGeneratedColumn('uuid')
- id: string;
+  @PrimaryGeneratedColumn('increment')
+ id: number;
 
  @Column({ name: 'image', type: 'varchar' })
  image: string;
@@ -16,10 +16,4 @@ export class User extends BaseEntity {
 
  @Column({ name: 'salary', type: 'int' })
  salary: number;
-
- static findByDesignation(designation: string) {
-    return this.createQueryBuilder("user")
-      .where("LPGManager.user = :userId", { designation })
-      .getOne();
-  }
 }

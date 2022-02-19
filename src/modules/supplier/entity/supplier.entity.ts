@@ -2,8 +2,8 @@ import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, UpdateDateColumn } 
 
 @Entity()
 export class Supplier extends BaseEntity {
- @PrimaryGeneratedColumn('uuid')
- id: string;
+  @PrimaryGeneratedColumn('increment')
+ id: number;
 
  @Column({ name: 'image', type: 'varchar' })
  image: string;
@@ -19,10 +19,4 @@ export class Supplier extends BaseEntity {
 
  @Column({ name: 'company_type', type: 'int'})
  company_type: number;
-
- static findById(id: string) {
-    return this.createQueryBuilder("company")
-      .where("LPGManager.id = :id", { id })
-      .getOne();
-  }
 }

@@ -2,8 +2,8 @@ import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, UpdateDateColumn } 
 
 @Entity()
 export class RolePermission extends BaseEntity {
- @PrimaryGeneratedColumn('uuid')
- id: string;
+    @PrimaryGeneratedColumn('increment')
+    id: number;
 
  @Column({ name: 'role_id', type: 'int' })
  RoleId: number;

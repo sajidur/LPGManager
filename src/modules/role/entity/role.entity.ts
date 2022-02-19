@@ -2,8 +2,8 @@ import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, UpdateDateColumn } 
 
 @Entity()
 export class Role extends BaseEntity {
- @PrimaryGeneratedColumn('uuid')
- id: string;
+  @PrimaryGeneratedColumn('increment')
+ id: number;
 
  @Column({ name: 'name', type: 'varchar', length: 500 })
  name: string;
