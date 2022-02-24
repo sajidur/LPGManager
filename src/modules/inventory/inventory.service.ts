@@ -55,6 +55,9 @@ export class InventoryService {
     return this.repository.findOne({ProductName:inv.ProductName,SupplierId:inv.SupplierId,size:inv.size,product_type:inv.product_type});
   }
  
+  all(): Promise<Inventory[]> {
+    return this.repository.createQueryBuilder("inventory").getMany();
+  }
   async update(id: number, updateItemDto: Inventory): Promise<Inventory> {
     const item = await this.repository.preload({
       id: id,

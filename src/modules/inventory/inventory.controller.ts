@@ -42,8 +42,8 @@ import { TransformInterceptor } from 'src/common/TransformInterceptor';
 import { InventoryService } from './inventory.service';
 import { Inventory } from './entity/inventory.entity';
   import {InventoryResponse} from './response/inventory.response'
-  @ApiTags('user API')
-  @Controller('user')
+  @ApiTags('inventory API')
+  @Controller('inventory')
   @UseInterceptors(TransformInterceptor, RequestLogInterceptor)
   @UseFilters(HttpExceptionFilter)
   export class InventoryController {
@@ -51,15 +51,12 @@ import { Inventory } from './entity/inventory.entity';
   
     constructor(private inventoryService: InventoryService) {}
 
-    @Post('employee/create')
+    @Get('inventory/getall')
     @ApiOkResponse({ type: () => InventoryResponse })
     @ApiOkResponse({ type: () => SwaggerResponseType(InventoryResponse) })
     @UseInterceptors(ClassSerializerInterceptor)
-    async create(
-      @Body() inventory:Inventory    ) {
-      if (inventory.ProductName == '') return "Bad request designation should't empty";
-      return this.inventoryService.create(
-        inventory
+    async GetAll() {
+      return this.inventoryService.all(
       );
     }
   
