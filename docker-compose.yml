@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   lpgmanager:
-    image: lpgmanager:0.0.1
+    image: lpgmanager:latest
     ports:
       - 3000:3000
     env_file:
